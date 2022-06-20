@@ -13,7 +13,8 @@ export default function Entrada(props: EntradaProps) {
             <label className="mb-2">
                 {props.texto}
             </label>
-            <input type={props.tipo ?? 'text'}
+            <input 
+                type={props.tipo ?? 'text'}
                 value={props.valor}
                 readOnly={props.somenteLeitura}
                 onChange={e => props.valorMudou?.(e.target.value)}

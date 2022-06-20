@@ -1,11 +1,9 @@
-
 interface BotaoProps {
     icone?: any,
-    cor?: 'green' | 'blue' | 'gray'
     children?: any,
     className?: string,
     clearClass?: boolean,
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    onClick?: () => void,
 }
 
 export default function Botao(props: BotaoProps) {

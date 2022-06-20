@@ -6,6 +6,10 @@ import Layout from "../components/Layout"
 import Tabela from "../components/Tabela"
 
 export default function Home() {
+
+  const [cliente, setCliente] = useState<Cliente>(Cliente.vazio())
+  const [visivel, setVisivel] = useState<'tabela' | 'formulario'>('tabela')
+
   const clientes = [
     new Cliente('Ana', 34, '1'),
     new Cliente('Bia', 34, '2'),
@@ -14,13 +18,16 @@ export default function Home() {
   ]
 
   function clienteSelecionado(cliente: Cliente) {
-    console.log(cliente.nome)
+    setCliente(cliente)
   }
   function clienteExcluido(cliente: Cliente) {
     console.log(`Excluir.... ${cliente.nome}`)
   }
+  function salvarCliente(cliente: Cliente) {
+    console.log(cliente)
+    setVisivel('tabela')
+  }
 
-  const [visivel, setVisivel] = useState<'tabela' | 'formulario'>('tabela')
 
   return (
     <div className={`
@@ -35,7 +42,8 @@ export default function Home() {
               <Botao clearClass className={`
                 bg-gradient-to-r from-green-400 to-green-700
                 text-white px-4 py-2 rounded-md mb-4
-              `}        
+                `}
+                onClick={() => setVisivel('formulario')}
               >Novo Cliente</Botao>
             </div>
 
@@ -44,7 +52,11 @@ export default function Home() {
               clienteExcluido={clienteExcluido}/>
           </>
         ) : (
-          <Formulario  cliente={clientes[2]}/>
+          <Formulario  
+            cliente={cliente}
+            cancelado={() => setVisivel('tabela')}
+            clienteMudou={salvarCliente}
+          />
         )}
       </Layout>
     </div>
