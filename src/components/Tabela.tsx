@@ -1,4 +1,3 @@
-import { debug } from "console"
 import Cliente from "../../core/Cliente"
 import Botao from "./Botao"
 import { IconeEdicao, IconeLixo } from "./Icones"
