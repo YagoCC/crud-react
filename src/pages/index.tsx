@@ -19,6 +19,7 @@ export default function Home() {
 
   function clienteSelecionado(cliente: Cliente) {
     setCliente(cliente)
+    setVisivel('formulario')
   }
   function clienteExcluido(cliente: Cliente) {
     console.log(`Excluir.... ${cliente.nome}`)
@@ -26,6 +27,10 @@ export default function Home() {
   function salvarCliente(cliente: Cliente) {
     console.log(cliente)
     setVisivel('tabela')
+  }
+  function novoCliente() {
+    setCliente(Cliente.vazio())
+    setVisivel('formulario')
   }
 
 
@@ -43,7 +48,7 @@ export default function Home() {
                 bg-gradient-to-r from-green-400 to-green-700
                 text-white px-4 py-2 rounded-md mb-4
                 `}
-                onClick={() => setVisivel('formulario')}
+                onClick={novoCliente}
               >Novo Cliente</Botao>
             </div>
 
